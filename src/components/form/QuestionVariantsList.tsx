@@ -64,7 +64,13 @@ const QuestionVariantsList = ({
                   fieldType={fieldType}
                 />
               ))}
-              <Button type="dashed" onClick={() => subOpt.add()} block>
+              <Button
+                type="dashed"
+                onClick={() =>
+                  subOpt.add({ value: '', isAnswer: subFields.length === 0 })
+                }
+                block
+              >
                 + Додати варіант
               </Button>
             </div>

@@ -29,6 +29,7 @@ const QuestionVariantsListItemAnswerRadio = ({
     onChangeHandlerRadio?.(e)
     onChange(e.target.checked)
   }
+
   return (
     <Radio checked={value} onChange={onChangeHandler}>
       Відповідь
@@ -50,6 +51,7 @@ const QuestionVariantsListItem = ({
 
   const onChangeHandlerRadio = (e: CheckboxChangeEvent) => {
     const currentFields = form.getFieldValue(['items', fieldName, 'options'])
+
     form.setFieldsValue({
       items: {
         [fieldName]: {

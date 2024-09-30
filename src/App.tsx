@@ -1,62 +1,57 @@
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Flex,
-  Form,
-  Image,
-  Input,
-  Layout,
-  Menu,
-  Row,
-  Select,
-  Space,
-  theme,
-  Typography,
-} from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
+import { Button, Col, Image, Layout, Row, Space, theme, Typography } from 'antd'
+import { useState } from 'react'
 import './App.css'
+import bigImage from './assets/image-removebg-preview.png'
 import logo from './assets/logo.png'
-import QuestionVariantsList from './components/form/QuestionVariantsList'
-import { FormTypeFields } from './types'
-import { RiListRadio, RiListCheck3 } from 'react-icons/ri'
-import { TbNumber123 } from 'react-icons/tb'
-import { TbAbc } from 'react-icons/tb'
-const { Header, Content, Footer, Sider } = Layout
+import QuestionsConfiguration from './pages/QuestionsConfiguration'
 
-const FormTypeFieldsOptions = {
-  [FormTypeFields.Text]: {
-    label: 'Текст',
-    icon: <TbAbc color="green" />,
-  },
-  [FormTypeFields.Number]: {
-    label: 'Число',
-    icon: <TbNumber123 color="blue" />,
-  },
-  [FormTypeFields.Radio]: {
-    label: 'Один варіант із списку',
-    icon: <RiListRadio color="red" />,
-  },
-  [FormTypeFields.Checkbox]: {
-    label: 'Декілька варіантів із списку',
-    icon: <RiListCheck3 color="purple" />,
-  },
-}
+const { Header, Content, Footer } = Layout
 
 function App() {
+  const [mode, setMode] = useState<'demo' | 'new'>()
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
-  const [form] = Form.useForm()
+  const renderCreateMode = () => {
+    return <QuestionsConfiguration />
+  }
 
-  const optionRender = (item: any) => (
-    <Flex align="center" gap={8}>
-      {FormTypeFieldsOptions[item?.value as FormTypeFields].icon}
-      <Typography.Text>{item.label}</Typography.Text>
-    </Flex>
-  )
+  const renderWelcomeMode = () => {
+    return (
+      <Row>
+        <Col span={12}>
+          <Typography.Title level={1}>
+            Вітаємо!
+            <br />
+            Ви можете створити нове опитування або вибрати одне з існуючих
+          </Typography.Title>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <Button
+              type="primary"
+              onClick={() => setMode('new')}
+              size="large"
+              style={{ width: '100%' }}
+            >
+              Створити нове опитування
+            </Button>
+            <Button
+              type="default"
+              onClick={() => setMode('demo')}
+              size="large"
+              style={{ width: '100%' }}
+            >
+              Вибрати існуюче опитування
+            </Button>
+          </div>
+        </Col>
+        <Col span={12}>
+          <Image src={bigImage} preview={false} height={300} />
+        </Col>
+      </Row>
+    )
+  }
 
   return (
     <Layout className="layout">
@@ -67,7 +62,15 @@ function App() {
           </Col>
         </Row>
       </Header>
-      <Content style={{ padding: 48, height: '100%' }} className="content">
+      <Content
+        style={{
+          padding: 48,
+          height: '100%',
+          margin: '24px auto',
+          maxWidth: 1200,
+        }}
+        className="content"
+      >
         <Layout
           style={{
             padding: '24px 0',
@@ -75,7 +78,8 @@ function App() {
             borderRadius: borderRadiusLG,
           }}
         >
-          <Sider style={{ background: colorBgContainer }} width={200}>
+          <Content style={{ padding: '0 24px', minHeight: 280 }}>
+            {/* <Sider style={{ background: colorBgContainer }} width={200}>
             <Menu
               mode="inline"
               style={{ height: '100%' }}
@@ -97,120 +101,14 @@ function App() {
                 },
               ]}
             />
-          </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            <Form
-              form={form}
-              labelCol={{ span: 6 }}
-              wrapperCol={{ span: 18 }}
-              onFinish={(values) => {
-                console.log('onFinish', values)
-              }}
-              autoComplete="off"
-              initialValues={{ items: [{}] }}
-            >
-              <Form.List
-                name="items"
-                rules={[
-                  {
-                    validator(rule, value, callback) {
-                      if (value.length < 2) {
-                        return Promise.reject('Додайте хоча б два питання')
-                      }
-                      return Promise.resolve()
-                    },
-                  },
-                ]}
-              >
-                {(fields, { add, remove }) => (
-                  <div
-                    style={{
-                      display: 'flex',
-                      rowGap: 16,
-                      flexDirection: 'column',
-                    }}
-                  >
-                    {fields.map((field) => (
-                      <Card
-                        size="small"
-                        title={`Питання ${field.name + 1}`}
-                        key={field.key}
-                        extra={
-                          <CloseOutlined
-                            onClick={() => {
-                              remove(field.name)
-                            }}
-                          />
-                        }
-                      >
-                        <Form.Item
-                          label="Питання"
-                          required
-                          rules={[{ required: true }]}
-                          name={[field.name, 'question']}
-                        >
-                          <Input />
-                        </Form.Item>
-                        <Form.Item
-                          label="Тип відповіді"
-                          rules={[{ required: true }]}
-                          required
-                          name={[field.name, 'field_type']}
-                        >
-                          <Select
-                            optionRender={optionRender}
-                            labelRender={optionRender}
-                            options={Object.entries(FormTypeFieldsOptions).map(
-                              ([value, options]) => ({
-                                value,
-                                ...options,
-                              })
-                            )}
-                          />
-                        </Form.Item>
-                        {/* Nest Form.List */}
-                        <Form.Item noStyle shouldUpdate>
-                          {() => (
-                            <Form.Item noStyle>
-                              <QuestionVariantsList
-                                field={field}
-                                fieldTypeNamePath={[
-                                  'items',
-                                  field.name,
-                                  'field_type',
-                                ]}
-                              />
-                            </Form.Item>
-                          )}
-                        </Form.Item>
-                      </Card>
-                    ))}
-
-                    <Button type="dashed" onClick={() => add()} block>
-                      + Додати питання
-                    </Button>
-                  </div>
-                )}
-              </Form.List>
-
-              <Form.Item noStyle shouldUpdate>
-                {() => (
-                  <Typography>
-                    <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
-                  </Typography>
-                )}
-              </Form.Item>
-              <Form.Item noStyle>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
+          </Sider> */}
+            {!mode && renderWelcomeMode()}
+            {mode === 'new' && renderCreateMode()}
           </Content>
         </Layout>
       </Content>
       <Footer style={{ textAlign: 'center' }} className="footer">
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        Harlinskyi Kyrylo ©2024 КН-2/1
       </Footer>
     </Layout>
   )
