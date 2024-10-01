@@ -1,57 +1,17 @@
-import { Button, Col, Image, Layout, Row, Space, theme, Typography } from 'antd'
+import { Col, Image, Layout, Row, theme } from 'antd'
 import { useState } from 'react'
 import './App.css'
-import bigImage from './assets/image-removebg-preview.png'
 import logo from './assets/logo.png'
-import QuestionsConfiguration from './pages/QuestionsConfiguration'
+import Router from './routes/Router'
+import { useNavigate } from 'react-router-dom'
 
 const { Header, Content, Footer } = Layout
 
 function App() {
-  const [mode, setMode] = useState<'demo' | 'new'>()
-
+  
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
-
-  const renderCreateMode = () => {
-    return <QuestionsConfiguration />
-  }
-
-  const renderWelcomeMode = () => {
-    return (
-      <Row>
-        <Col span={12}>
-          <Typography.Title level={1}>
-            Вітаємо!
-            <br />
-            Ви можете створити нове опитування або вибрати одне з існуючих
-          </Typography.Title>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <Button
-              type="primary"
-              onClick={() => setMode('new')}
-              size="large"
-              style={{ width: '100%' }}
-            >
-              Створити нове опитування
-            </Button>
-            <Button
-              type="default"
-              onClick={() => setMode('demo')}
-              size="large"
-              style={{ width: '100%' }}
-            >
-              Вибрати існуюче опитування
-            </Button>
-          </div>
-        </Col>
-        <Col span={12}>
-          <Image src={bigImage} preview={false} height={300} />
-        </Col>
-      </Row>
-    )
-  }
 
   return (
     <Layout className="layout">
@@ -68,6 +28,7 @@ function App() {
           height: '100%',
           margin: '24px auto',
           maxWidth: 1200,
+          width: '100%',
         }}
         className="content"
       >
@@ -79,31 +40,7 @@ function App() {
           }}
         >
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            {/* <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu
-              mode="inline"
-              style={{ height: '100%' }}
-              items={[
-                {
-                  key: '1',
-                  title: 'nav 1',
-                  label: 'nav 1',
-                },
-                {
-                  key: '2',
-                  title: 'nav 2',
-                  label: 'nav 2',
-                },
-                {
-                  key: '3',
-                  title: 'nav 3',
-                  label: 'nav 3',
-                },
-              ]}
-            />
-          </Sider> */}
-            {!mode && renderWelcomeMode()}
-            {mode === 'new' && renderCreateMode()}
+           <Router />
           </Content>
         </Layout>
       </Content>
