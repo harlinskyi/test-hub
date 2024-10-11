@@ -1,0 +1,56 @@
+[
+  {
+    "question": "У якому році народився Леонардо да Вінчі?",
+    "field_type": "number",
+    "answer": "1452"
+  },
+  {
+    "question": "Яка картина є найвідомішою роботою Леонардо да Вінчі?",
+    "field_type": "text",
+    "answer": "Мона Ліза"
+  },
+  {
+    "question": "Який стиль живопису використовував Пабло Пікассо?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Кубізм",
+        "isAnswer": true
+      },
+      {
+        "value": "Імпресіонізм",
+        "isAnswer": false
+      },
+      {
+        "value": "Реалізм",
+        "isAnswer": false
+      },
+      {
+        "value": "Ренесанс",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всіх відомих художників епохи Відродження",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Леонардо да Вінчі",
+        "isAnswer": true
+      },
+      {
+        "value": "Мікеланджело",
+        "isAnswer": true
+      },
+      {
+        "value": "Ван Гог",
+        "isAnswer": false
+      },
+      {
+        "value": "Рафаель",
+        "isAnswer": true
+      }
+    ]
+  }
+]

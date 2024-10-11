@@ -1,5 +1,15 @@
 import { CloseOutlined } from '@ant-design/icons'
-import { Button, Card, Flex, Form, Input, Select, Typography } from 'antd'
+import {
+  Button,
+  Card,
+  Flex,
+  Form,
+  Input,
+  Layout,
+  Select,
+  Typography,
+  notification,
+} from 'antd'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { RiListCheck3, RiListRadio } from 'react-icons/ri'
 import { TbAbc, TbNumber123 } from 'react-icons/tb'
@@ -7,6 +17,11 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import QuestionVariantsList from '../components/form/QuestionVariantsList'
 import { FormTypeFields } from '../types'
+import { useState } from 'react'
+import { SaveOutlined } from '@ant-design/icons'
+import { FaCode } from 'react-icons/fa6'
+import { hasDuplicates } from '../utils'
+import { getHomeRoute, getRunRoute } from '../routes/routeConstants'
 
 const FormTypeFieldsOptions = {
   [FormTypeFields.Text]: {
@@ -28,8 +43,9 @@ const FormTypeFieldsOptions = {
 }
 
 function QuestionsConfigurationPage() {
-  const [form] = Form.useForm();
-  const navigate = useNavigate();
+  const [form] = Form.useForm()
+  const navigate = useNavigate()
+  const [showFormValues, setShowFormValues] = useState(false)
 
   const optionRender = (item: any) => (
     <Flex align="center" gap={8}>
@@ -38,26 +54,50 @@ function QuestionsConfigurationPage() {
     </Flex>
   )
 
+  const onClickFinish = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        navigate(getRunRoute(), { state: values?.items || [] })
+      })
+      .catch((error: any) => {
+        notification.error({
+          message: 'Помилка валідації',
+          description: error.errorFields
+            ?.map((field: any) => field.errors.join(','))
+            .map((error: any, index: number) => (
+              <div key={error + index}>- {error}</div>
+            )),
+        })
+      })
+  }
+  const onFinish = (values: any) => {
+    navigate('/run', { state: values?.items || [] })
+  }
+
   return (
-    <>
-      <div>
+    <Layout.Content style={{ minHeight: 280 }}>
+      <Flex gap={10}>
         <Button
           type="default"
-          onClick={() => navigate('/')}
-          size="large"
+          onClick={() => navigate(getHomeRoute())}
           icon={<IoMdArrowRoundBack />}
           style={{ marginBottom: 16 }}
         >
           Назад
         </Button>
-      </div>
+        <Button
+          icon={<FaCode />}
+          type="dashed"
+          onClick={() => setShowFormValues((prev) => !prev)}
+        />
+      </Flex>
       <Form
         form={form}
         labelCol={{ span: 6 }}
-        wrapperCol={{ span: 18 }}
-        onFinish={(values) => {
-          console.log('onFinish', values)
-        }}
+        wrapperCol={{ span: 24 }}
+        onFinish={onFinish}
+        onError={(error) => console.log(error)}
         autoComplete="off"
         initialValues={{ items: [{}] }}
       >
@@ -66,8 +106,13 @@ function QuestionsConfigurationPage() {
           rules={[
             {
               validator(rule, value, callback) {
-                if (value.length < 2) {
+                if (value?.length < 2) {
                   return Promise.reject('Додайте хоча б два питання')
+                }
+                if (
+                  hasDuplicates(value.map((item: any) => item?.question || ''))
+                ) {
+                  return Promise.reject('Питання не повинні повторюватися')
                 }
                 return Promise.resolve()
               },
@@ -101,7 +146,7 @@ function QuestionsConfigurationPage() {
                     rules={[{ required: true }]}
                     name={[field.name, 'question']}
                   >
-                    <Input size='large'/>
+                    <Input size="large" />
                   </Form.Item>
                   <Form.Item
                     label="Тип відповіді"
@@ -112,7 +157,7 @@ function QuestionsConfigurationPage() {
                     <Select
                       optionRender={optionRender}
                       labelRender={optionRender}
-                      size='large'
+                      size="large"
                       options={Object.entries(FormTypeFieldsOptions).map(
                         ([value, options]) => ({
                           value,
@@ -145,21 +190,32 @@ function QuestionsConfigurationPage() {
             </div>
           )}
         </Form.List>
-
-        <Form.Item noStyle shouldUpdate>
-          {() => (
-            <Typography>
-              <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
-            </Typography>
-          )}
-        </Form.Item>
-        <Form.Item noStyle>
-          <Button type="primary" htmlType="submit">
-            Submit
+        <Form.Item
+          style={{
+            textAlign: 'right',
+          }}
+        >
+          <Button
+            type="primary"
+            onClick={onClickFinish}
+            icon={<SaveOutlined />}
+            style={{ marginTop: 16 }}
+            size="large"
+          >
+            Зберегти та продовжити
           </Button>
         </Form.Item>
+        {showFormValues && (
+          <Form.Item noStyle shouldUpdate>
+            {() => (
+              <Typography.Paragraph>
+                <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
+              </Typography.Paragraph>
+            )}
+          </Form.Item>
+        )}
       </Form>
-    </>
+    </Layout.Content>
   )
 }
 

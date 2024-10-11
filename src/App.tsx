@@ -1,14 +1,11 @@
 import { Col, Image, Layout, Row, theme } from 'antd'
-import { useState } from 'react'
 import './App.css'
 import logo from './assets/logo.png'
-import Router from './routes/Router'
-import { useNavigate } from 'react-router-dom'
+import { Router } from './routes/Router'
 
 const { Header, Content, Footer } = Layout
 
 function App() {
-  
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
@@ -34,14 +31,14 @@ function App() {
       >
         <Layout
           style={{
-            padding: '24px 0',
+            padding: '24px',
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
+            boxShadow:
+              '0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)',
           }}
         >
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>
-           <Router />
-          </Content>
+          <Router />
         </Layout>
       </Content>
       <Footer style={{ textAlign: 'center' }} className="footer">

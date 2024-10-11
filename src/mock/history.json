@@ -1,0 +1,56 @@
+[
+  {
+    "question": "У якому році почалася Друга світова війна?",
+    "field_type": "number",
+    "answer": "1939"
+  },
+  {
+    "question": "Хто був першим президентом США?",
+    "field_type": "text",
+    "answer": "Джордж Вашингтон"
+  },
+  {
+    "question": "Яка з цих імперій була найбільшою за площею?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Британська імперія",
+        "isAnswer": true
+      },
+      {
+        "value": "Римська імперія",
+        "isAnswer": false
+      },
+      {
+        "value": "Османська імперія",
+        "isAnswer": false
+      },
+      {
+        "value": "Московська імперія",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всіх відомих військових лідерів",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Наполеон Бонапарт",
+        "isAnswer": true
+      },
+      {
+        "value": "Юлій Цезар",
+        "isAnswer": true
+      },
+      {
+        "value": "Піфагор",
+        "isAnswer": false
+      },
+      {
+        "value": "Ганнібал",
+        "isAnswer": true
+      }
+    ]
+  }
+]

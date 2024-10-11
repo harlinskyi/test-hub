@@ -1,0 +1,120 @@
+[
+  {
+    "question": "Скільки бітів в одному байті?",
+    "field_type": "number",
+    "answer": "8"
+  },
+  {
+    "question": "Яка мова програмування використовується для розробки веб-сторінок на стороні клієнта?",
+    "field_type": "text",
+    "answer": "JavaScript"
+  },
+  {
+    "question": "Який протокол використовується для передачі веб-сторінок через Інтернет?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "HTTP",
+        "isAnswer": true
+      },
+      {
+        "value": "FTP",
+        "isAnswer": false
+      },
+      {
+        "value": "SMTP",
+        "isAnswer": false
+      },
+      {
+        "value": "TCP",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі мови програмування, які є об'єктно-орієнтованими",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Java",
+        "isAnswer": true
+      },
+      {
+        "value": "Python",
+        "isAnswer": true
+      },
+      {
+        "value": "C",
+        "isAnswer": false
+      },
+      {
+        "value": "C++",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Яка мова програмування була створена першою?",
+    "field_type": "text",
+    "answer": "Фортран"
+  },
+  {
+    "question": "Яка операційна система найбільш поширена на серверних системах?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Linux",
+        "isAnswer": true
+      },
+      {
+        "value": "Windows",
+        "isAnswer": false
+      },
+      {
+        "value": "macOS",
+        "isAnswer": false
+      },
+      {
+        "value": "FreeBSD",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі технології, що використовуються для створення веб-застосунків",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "React",
+        "isAnswer": true
+      },
+      {
+        "value": "Django",
+        "isAnswer": true
+      },
+      {
+        "value": "Photoshop",
+        "isAnswer": false
+      },
+      {
+        "value": "Node.js",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Яка компанія розробила операційну систему Windows?",
+    "field_type": "text",
+    "answer": "Microsoft"
+  },
+  {
+    "question": "Скільки кілобайтів у мегабайті?",
+    "field_type": "number",
+    "answer": "1024"
+  },
+  {
+    "question": "Яка компанія створила перший комерційний мікропроцесор?",
+    "field_type": "text",
+    "answer": "Intel"
+  }
+]

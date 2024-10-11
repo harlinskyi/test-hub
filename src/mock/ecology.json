@@ -1,0 +1,56 @@
+[
+  {
+    "question": "Скільки відсотків Землі покрито водою?",
+    "field_type": "number",
+    "answer": "71"
+  },
+  {
+    "question": "Який процес зменшує кількість вуглекислого газу в атмосфері?",
+    "field_type": "text",
+    "answer": "Фотосинтез"
+  },
+  {
+    "question": "Яка з цих країн має найбільші площі тропічних лісів?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Бразилія",
+        "isAnswer": true
+      },
+      {
+        "value": "Канада",
+        "isAnswer": false
+      },
+      {
+        "value": "Австралія",
+        "isAnswer": false
+      },
+      {
+        "value": "Китай",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі джерела відновлюваної енергії",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Сонячна енергія",
+        "isAnswer": true
+      },
+      {
+        "value": "Вітер",
+        "isAnswer": true
+      },
+      {
+        "value": "Вугілля",
+        "isAnswer": false
+      },
+      {
+        "value": "Гідроенергія",
+        "isAnswer": true
+      }
+    ]
+  }
+]

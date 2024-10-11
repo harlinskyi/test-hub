@@ -1,0 +1,120 @@
+[
+  {
+    "question": "Скільки планет в Сонячній системі?",
+    "field_type": "number",
+    "answer": "8"
+  },
+  {
+    "question": "Яка планета найбільша в Сонячній системі?",
+    "field_type": "text",
+    "answer": "Юпітер"
+  },
+  {
+    "question": "Хто був першим космонавтом, що побував у космосі?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Юрій Гагарін",
+        "isAnswer": true
+      },
+      {
+        "value": "Ніл Армстронг",
+        "isAnswer": false
+      },
+      {
+        "value": "Алан Шепард",
+        "isAnswer": false
+      },
+      {
+        "value": "Валентина Терешкова",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі об'єкти, які є супутниками планет",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Місяць",
+        "isAnswer": true
+      },
+      {
+        "value": "Іо",
+        "isAnswer": true
+      },
+      {
+        "value": "Венера",
+        "isAnswer": false
+      },
+      {
+        "value": "Ганімед",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Скільки часу триває один оберт Землі навколо Сонця?",
+    "field_type": "text",
+    "answer": "365 днів"
+  },
+  {
+    "question": "Яка з цих планет є найближчою до Сонця?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Меркурій",
+        "isAnswer": true
+      },
+      {
+        "value": "Венера",
+        "isAnswer": false
+      },
+      {
+        "value": "Земля",
+        "isAnswer": false
+      },
+      {
+        "value": "Марс",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі місії, які здійснювали посадку на Місяць",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Аполлон-11",
+        "isAnswer": true
+      },
+      {
+        "value": "Аполлон-12",
+        "isAnswer": true
+      },
+      {
+        "value": "Вояджер-1",
+        "isAnswer": false
+      },
+      {
+        "value": "Аполлон-15",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Яка людина першою ступила на поверхню Місяця?",
+    "field_type": "text",
+    "answer": "Ніл Армстронг"
+  },
+  {
+    "question": "Скільки природних супутників має Марс?",
+    "field_type": "number",
+    "answer": "2"
+  },
+  {
+    "question": "Яка галактика є найближчою до Чумацького Шляху?",
+    "field_type": "text",
+    "answer": "Андромеда"
+  }
+]

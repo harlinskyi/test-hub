@@ -4,6 +4,7 @@ import { Button, Form, Input } from 'antd'
 
 import { FormTypeFields } from '../../types'
 import QuestionVariantsListItem from './QuestionVariantsListItem'
+import { hasDuplicates } from '../../utils'
 
 type Props = {
   field: any
@@ -40,8 +41,15 @@ const QuestionVariantsList = ({
           rules={[
             {
               validator(rule, value, callback) {
-                if (value.length < 2) {
+                if (!value || value?.length < 2) {
                   return Promise.reject('Додайте хоча б два варіанти')
+                }
+                if (
+                  hasDuplicates(value.map((item: any) => item?.value || ''))
+                ) {
+                  return Promise.reject(
+                    'Варіанти відповідей не повинні повторюватися'
+                  )
                 }
                 return Promise.resolve()
               },

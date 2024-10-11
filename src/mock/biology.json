@@ -1,0 +1,120 @@
+[
+  {
+    "question": "Скільки хромосом у людини?",
+    "field_type": "number",
+    "answer": "46"
+  },
+  {
+    "question": "Яка найбільша клітина в організмі людини?",
+    "field_type": "text",
+    "answer": "Яйцеклітина"
+  },
+  {
+    "question": "Який орган відповідає за перекачування крові в тілі людини?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Серце",
+        "isAnswer": true
+      },
+      {
+        "value": "Мозок",
+        "isAnswer": false
+      },
+      {
+        "value": "Печінка",
+        "isAnswer": false
+      },
+      {
+        "value": "Легені",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі органели, які є частинами клітини",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Мітохондрія",
+        "isAnswer": true
+      },
+      {
+        "value": "Рибосома",
+        "isAnswer": true
+      },
+      {
+        "value": "Гіпофіз",
+        "isAnswer": false
+      },
+      {
+        "value": "Ядро",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Скільки основних типів тканин є у тварин?",
+    "field_type": "number",
+    "answer": "4"
+  },
+  {
+    "question": "Який найшвидший наземний ссавець?",
+    "field_type": "text",
+    "answer": "Гепард"
+  },
+  {
+    "question": "Який з цих організмів є одноклітинним?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Амеба",
+        "isAnswer": true
+      },
+      {
+        "value": "Тигр",
+        "isAnswer": false
+      },
+      {
+        "value": "Лев",
+        "isAnswer": false
+      },
+      {
+        "value": "Слон",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі тварини, що є хижаками",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Лев",
+        "isAnswer": true
+      },
+      {
+        "value": "Вовк",
+        "isAnswer": true
+      },
+      {
+        "value": "Корова",
+        "isAnswer": false
+      },
+      {
+        "value": "Акула",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Який процес є основним для перетворення сонячної енергії у рослинах?",
+    "field_type": "text",
+    "answer": "Фотосинтез"
+  },
+  {
+    "question": "Скільки камер має серце людини?",
+    "field_type": "number",
+    "answer": "4"
+  }
+]

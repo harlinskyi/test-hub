@@ -1,0 +1,137 @@
+[
+  {
+    "question": "Скільки материків на Землі?",
+    "field_type": "number",
+    "answer": "6"
+  },
+  {
+    "question": "Яка країна має найбільшу кількість населення?",
+    "field_type": "text",
+    "answer": "Китай"
+  },
+  {
+    "question": "Який материк найменший за площею?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Австралія",
+        "isAnswer": true
+      },
+      {
+        "value": "Антарктида",
+        "isAnswer": false
+      },
+      {
+        "value": "Європа",
+        "isAnswer": false
+      },
+      {
+        "value": "Південна Америка",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі країни, які мають пустелі на своїй території",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Австралія",
+        "isAnswer": true
+      },
+      {
+        "value": "Єгипет",
+        "isAnswer": true
+      },
+      {
+        "value": "Бразилія",
+        "isAnswer": false
+      },
+      {
+        "value": "Монголія",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "Скільки океанів на Землі?",
+    "field_type": "number",
+    "answer": "5"
+  },
+  {
+    "question": "Яке найвисокогірніше озеро у світі?",
+    "field_type": "text",
+    "answer": "Тітікака"
+  },
+  {
+    "question": "Який з цих островів є найбільшим за площею?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Гренландія",
+        "isAnswer": true
+      },
+      {
+        "value": "Мадагаскар",
+        "isAnswer": false
+      },
+      {
+        "value": "Нова Гвінея",
+        "isAnswer": false
+      },
+      {
+        "value": "Борнео",
+        "isAnswer": false
+      }
+    ]
+  },
+  {
+    "question": "Оберіть всі країни, що мають вихід до Середземного моря",
+    "field_type": "checkbox",
+    "options": [
+      {
+        "value": "Італія",
+        "isAnswer": true
+      },
+      {
+        "value": "Франція",
+        "isAnswer": true
+      },
+      {
+        "value": "Німеччина",
+        "isAnswer": false
+      },
+      {
+        "value": "Єгипет",
+        "isAnswer": true
+      }
+    ]
+  },
+  {
+    "question": "У якій країні знаходиться пустеля Сахара?",
+    "field_type": "text",
+    "answer": "Алжир"
+  },
+  {
+    "question": "Яка країна межує з найбільшою кількістю держав?",
+    "field_type": "radio",
+    "options": [
+      {
+        "value": "Китай",
+        "isAnswer": true
+      },
+      {
+        "value": "Росія",
+        "isAnswer": false
+      },
+      {
+        "value": "Бразилія",
+        "isAnswer": false
+      },
+      {
+        "value": "США",
+        "isAnswer": false
+      }
+    ]
+  }
+]
