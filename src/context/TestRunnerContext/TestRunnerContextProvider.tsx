@@ -1,33 +1,20 @@
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
 import React, { useCallback } from 'react'
-import mock_data from '../../mock/information_technology.json'
-import {
-  CalculateData,
-  FormTypeFields,
-  TestListItem,
-  TestListRunnerItem,
-} from '../../types'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { getHomeRoute } from '../../routes/routeConstants'
+import { CalculateData, FormTypeFields, TestListRunnerItem } from '../../types'
 import {
   calculateCheckboxAnswer,
   calculateRadioAnswer,
   shuffleArray,
 } from '../../utils'
 import TestRunnerContext, { TestRunnerContextType } from './TestRunnerContext'
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { getHomeRoute } from '../../routes/routeConstants'
 dayjs.extend(duration)
 
 type TestRunnerContextProviderProps = {
   children: React.ReactNode
 }
-
-const testData = mock_data as TestListItem[]
-
-// const data = shuffleArray(testData).map((item, index) => ({
-//   ...item,
-//   id: index + 1,
-// })) as TestListRunnerItem[]
 
 const TestRunnerContextProvider: React.FC<TestRunnerContextProviderProps> = ({
   children,
