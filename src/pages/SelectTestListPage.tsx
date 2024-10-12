@@ -1,17 +1,32 @@
-import { Avatar, Button, Layout, List, Typography } from 'antd'
-import Tests from '../mock'
-import { MockDataType } from '../types'
-import { useNavigate } from 'react-router-dom'
+import { DeleteOutlined } from '@ant-design/icons'
+import { Avatar, Button, Layout, List, Space, Typography } from 'antd'
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom'
+import useManageTests from '../localStorage/useManageTests'
 import { getHomeRoute, getRunRoute } from '../routes/routeConstants'
+import { LocalStorageMenuListItem } from '../types'
 
-const ListItem = ({ item }: { item: MockDataType }) => {
+const ListItem = ({ item }: { item: LocalStorageMenuListItem }) => {
   const navigate = useNavigate()
+  const { removeTest } = useManageTests()
+
+  const onClickDelete = (e: React.MouseEvent) => {
+    e.stopPropagation()
+
+    if (item?.id) {
+      removeTest(item.id)
+    }
+  }
 
   return (
     <List.Item
-      onClick={() => navigate(getRunRoute(), { state: item.tests })}
+      onClick={() => navigate(getRunRoute(), { state: item.test })}
       className="select-test-list-item"
+      // extra={
+      //   <Space>
+      //     {item?.id && <Button icon={<DeleteOutlined />} onClick={onClickDelete} />}
+      //   </Space>
+      // }
     >
       <List.Item.Meta
         avatar={
@@ -20,7 +35,7 @@ const ListItem = ({ item }: { item: MockDataType }) => {
             size="large"
             style={{ backgroundColor: 'rgba(0,0,0,0.05)' }}
           >
-            {item.icon}
+            {item?.icon || item?.title[0] || ''}
           </Avatar>
         }
         title={
@@ -33,6 +48,7 @@ const ListItem = ({ item }: { item: MockDataType }) => {
 }
 
 const SelectTestListPage = () => {
+  const { tests } = useManageTests()
   const navigate = useNavigate()
   return (
     <div>
@@ -45,10 +61,12 @@ const SelectTestListPage = () => {
       <Typography.Title level={2} style={{ textAlign: 'center' }}>
         Виберіть тест
       </Typography.Title>
-      <Layout.Content style={{ minHeight: 280 }}>
+      <Layout.Content
+        style={{ minHeight: 280, maxHeight: '50vh', overflow: 'auto' }}
+      >
         <List
           itemLayout="horizontal"
-          dataSource={Tests}
+          dataSource={tests}
           renderItem={(item) => <ListItem item={item} />}
         />
       </Layout.Content>

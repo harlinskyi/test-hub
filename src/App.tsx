@@ -1,6 +1,5 @@
-import { Col, Image, Layout, Row, theme } from 'antd'
-import './App.css'
-import logo from './assets/logo.png'
+import { Col, Flex, Image, Layout, Row, theme } from 'antd'
+import logo from './assets/logo_IT_short_white.png'
 import { Router } from './routes/Router'
 
 const { Header, Content, Footer } = Layout
@@ -15,7 +14,14 @@ function App() {
       <Header style={{ backgroundColor: '#1e2d50' }} className="header">
         <Row>
           <Col>
-            <Image src={logo} preview={false} height={30} />
+            <Flex align="center" gap={10} dir="row">
+              <span>
+                <Image src={logo} preview={false} height={30} />
+              </span>{' '}
+              <span style={{ color: '#fff', fontWeight: 'bold' }}>
+                {' | Harlinskyi Kyrylo - КН-2/1'}
+              </span>
+            </Flex>
           </Col>
         </Row>
       </Header>

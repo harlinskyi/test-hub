@@ -36,6 +36,11 @@ export type CalculateData = {
 export type MockDataType = {
   title: string
   count: number
-  tests: TestListItem[]
-  icon: string
+  test: TestListItem[]
+  icon: string | null
+}
+
+
+export type LocalStorageMenuListItem = MockDataType & {
+  id?: string // UUID
 }

@@ -1,4 +1,4 @@
-import { MockDataType, TestListItem } from '../types'
+import { MockDataType } from '../types'
 import art from './art.json'
 import biology from './biology.json'
 import ecology from './ecology.json'
@@ -10,37 +10,37 @@ import space from './space.json'
 export default [
   {
     title: 'Мистецтво',
-    tests: art,
+    test: art,
     icon: '🎨',
   },
   {
     title: 'Біологія',
-    tests: biology,
+    test: biology,
     icon: '🦠',
   },
   {
     title: 'Екологія',
-    tests: ecology,
+    test: ecology,
     icon: '🌳',
   },
   {
     title: 'Географія',
-    tests: geography,
+    test: geography,
     icon: '🌍',
   },
   {
     title: 'Історія',
-    tests: history,
+    test: history,
     icon: '📜',
   },
   {
     title: 'Інформаційні технології',
-    tests: it,
+    test: it,
     icon: '💻',
   },
   {
     title: 'Космос',
-    tests: space,
+    test: space,
     icon: '🚀',
   },
-].map((t) => ({ ...t, count: t.tests.length })) as MockDataType[]
+].map((t) => ({ ...t, count: t.test.length })) as MockDataType[]

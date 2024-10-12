@@ -7,6 +7,7 @@ import {
   Input,
   Layout,
   Select,
+  Space,
   Typography,
   notification,
 } from 'antd'
@@ -14,14 +15,18 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { RiListCheck3, RiListRadio } from 'react-icons/ri'
 import { TbAbc, TbNumber123 } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
-import '../App.css'
 import QuestionVariantsList from '../components/form/QuestionVariantsList'
 import { FormTypeFields } from '../types'
 import { useState } from 'react'
 import { SaveOutlined } from '@ant-design/icons'
 import { FaCode } from 'react-icons/fa6'
 import { hasDuplicates } from '../utils'
-import { getHomeRoute, getRunRoute } from '../routes/routeConstants'
+import {
+  getHomeRoute,
+  getRunRoute,
+  getSelectTestRoute,
+} from '../routes/routeConstants'
+import useManageTests from '../localStorage/useManageTests'
 
 const FormTypeFieldsOptions = {
   [FormTypeFields.Text]: {
@@ -46,6 +51,7 @@ function QuestionsConfigurationPage() {
   const [form] = Form.useForm()
   const navigate = useNavigate()
   const [showFormValues, setShowFormValues] = useState(false)
+  const { addTest } = useManageTests()
 
   const optionRender = (item: any) => (
     <Flex align="center" gap={8}>
@@ -54,25 +60,49 @@ function QuestionsConfigurationPage() {
     </Flex>
   )
 
-  const onClickFinish = () => {
+  const showError = (error: any) => {
+    notification.error({
+      message: 'Помилка валідації',
+      description: error.errorFields
+        ?.map((field: any) => field.errors.join(','))
+        .map((error: any, index: number) => (
+          <div key={error + index}>- {error}</div>
+        )),
+    })
+  }
+  const onClickFinishWithoutSave = () => {
     form
       .validateFields()
       .then((values) => {
         navigate(getRunRoute(), { state: values?.items || [] })
       })
       .catch((error: any) => {
-        notification.error({
-          message: 'Помилка валідації',
-          description: error.errorFields
-            ?.map((field: any) => field.errors.join(','))
-            .map((error: any, index: number) => (
-              <div key={error + index}>- {error}</div>
-            )),
-        })
+        showError(error)
       })
   }
-  const onFinish = (values: any) => {
-    navigate('/run', { state: values?.items || [] })
+
+  const onClickFinishWIthSave = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        addTest({ test: values?.items || [], title: values.title })
+        navigate(getRunRoute(), { state: values?.items || [] })
+      })
+      .catch((error: any) => {
+        showError(error)
+      })
+  }
+
+  const onClickFinishSaveAndExit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        addTest({ test: values?.items || [], title: values.title })
+        navigate(getSelectTestRoute())
+      })
+      .catch((error: any) => {
+        showError(error)
+      })
   }
 
   return (
@@ -96,11 +126,13 @@ function QuestionsConfigurationPage() {
         form={form}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 24 }}
-        onFinish={onFinish}
         onError={(error) => console.log(error)}
         autoComplete="off"
         initialValues={{ items: [{}] }}
       >
+        <Form.Item name="title" label="Назва тесту" required>
+          <Input size="large" placeholder="Введіть назву тесту" />
+        </Form.Item>
         <Form.List
           name="items"
           rules={[
@@ -195,15 +227,35 @@ function QuestionsConfigurationPage() {
             textAlign: 'right',
           }}
         >
-          <Button
-            type="primary"
-            onClick={onClickFinish}
-            icon={<SaveOutlined />}
-            style={{ marginTop: 16 }}
-            size="large"
-          >
-            Зберегти та продовжити
-          </Button>
+          <Flex justify="end" gap={10}>
+            <Button
+              type="primary"
+              onClick={onClickFinishWithoutSave}
+              icon={<SaveOutlined />}
+              style={{ marginTop: 16 }}
+              size="large"
+            >
+              Пройти тест
+            </Button>
+            <Button
+              type="primary"
+              onClick={onClickFinishWIthSave}
+              icon={<SaveOutlined />}
+              style={{ marginTop: 16 }}
+              size="large"
+            >
+              Зберегти та пройти тест
+            </Button>
+            <Button
+              type="primary"
+              onClick={onClickFinishSaveAndExit}
+              icon={<SaveOutlined />}
+              style={{ marginTop: 16 }}
+              size="large"
+            >
+              Зберегти та вийти
+            </Button>
+          </Flex>
         </Form.Item>
         {showFormValues && (
           <Form.Item noStyle shouldUpdate>

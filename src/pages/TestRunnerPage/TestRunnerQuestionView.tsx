@@ -22,6 +22,8 @@ import {
 } from '@ant-design/icons'
 import Timer from '../../components/Timer'
 import { TbDoorExit } from 'react-icons/tb'
+import { useNavigate } from 'react-router-dom'
+import { getSelectTestRoute } from '../../routes/routeConstants'
 
 const TestRunnerQuestionView: React.FC<TestListRunnerItem> = (props) => {
   const {
@@ -35,6 +37,7 @@ const TestRunnerQuestionView: React.FC<TestListRunnerItem> = (props) => {
     startTime,
   } = useTestRunnerContext()
   const { id, question, field_type } = props
+  const navigate = useNavigate()
 
   const renderQuestionFormItem = () => {
     const fieldKey = id.toString() + field_type
@@ -162,6 +165,9 @@ const TestRunnerQuestionView: React.FC<TestListRunnerItem> = (props) => {
                   iconPosition="end"
                   type="dashed"
                   danger
+                  onClick={() => {
+                    navigate(getSelectTestRoute())
+                  }}
                 >
                   Вийти
                 </Button>
