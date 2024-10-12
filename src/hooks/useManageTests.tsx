@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import storageProvider from '../localStorage/LocalStorageProvider'
+import MockTests from '../mock'
 import { LocalStorageMenuListItem, TestListItem } from '../types'
 import { generateUUID } from '../utils'
-import storageProvider from './LocalStorageProvider'
-import MockTests from '../mock'
 
 type AddTestType = {
   test: TestListItem[]
@@ -10,7 +10,10 @@ type AddTestType = {
 }
 
 const useManageTests = () => {
-  const [tests, setTests] = useState<LocalStorageMenuListItem[]>([...MockTests, ...storageProvider.getItem('tests') || []])
+  const [tests, setTests] = useState<LocalStorageMenuListItem[]>([
+    ...MockTests,
+    ...(storageProvider.getItem('tests') || []),
+  ])
 
   const addTest = ({ test, title }: AddTestType) => {
     const UUID = generateUUID()
@@ -23,13 +26,19 @@ const useManageTests = () => {
     }
 
     setTests([...tests, newTest])
-    storageProvider.setItem('tests', [...tests, newTest].filter((test) => test.id))
+    storageProvider.setItem(
+      'tests',
+      [...tests, newTest].filter((test) => test.id)
+    )
   }
 
   const removeTest = (id: string) => {
     const updatedTests = tests.filter((test) => test.id !== id)
     setTests(updatedTests)
-    storageProvider.setItem('tests', updatedTests.filter((test) => test.id))
+    storageProvider.setItem(
+      'tests',
+      updatedTests.filter((test) => test.id)
+    )
   }
 
   const updateTest = (id: string, updatedTest: TestListItem) => {
@@ -49,7 +58,10 @@ const useManageTests = () => {
     })
 
     setTests(updatedTests)
-    storageProvider.setItem('tests', updatedTests.filter((test) => test.id))
+    storageProvider.setItem(
+      'tests',
+      updatedTests.filter((test) => test.id)
+    )
   }
 
   return { tests, addTest, removeTest, updateTest }

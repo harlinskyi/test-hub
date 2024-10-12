@@ -2,7 +2,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 import { Avatar, Button, Layout, List, Space, Typography } from 'antd'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
-import useManageTests from '../localStorage/useManageTests'
+import useManageTests from '../hooks/useManageTests'
 import { getHomeRoute, getRunRoute } from '../routes/routeConstants'
 import { LocalStorageMenuListItem } from '../types'
 

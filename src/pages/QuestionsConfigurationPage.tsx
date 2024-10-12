@@ -26,7 +26,7 @@ import {
   getRunRoute,
   getSelectTestRoute,
 } from '../routes/routeConstants'
-import useManageTests from '../localStorage/useManageTests'
+import useManageTests from '../hooks/useManageTests'
 
 const FormTypeFieldsOptions = {
   [FormTypeFields.Text]: {
